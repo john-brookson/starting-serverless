@@ -2,18 +2,11 @@
 
 module.exports.hello = (event, context, callback) => {
 
-  let result = 0
+  let result = 'Informe os parametros para a soma no formato: /soma?a={numero}&b={numero}.'
 
-  if (typeof event.queryStringParameters !== "undefined") {
-    if (
-      typeof event.queryStringParameters.a !== "undefined" &&
-      typeof event.queryStringParameters.b !== "undefined") {
-      const a = event.queryStringParameters.a;
-      const b = event.queryStringParameters.b;
-      result = (parseFloat(a) + parseFloat(b));
-    }
+  if (event.queryStringParameters != null) {
+    result = parseFloat(event.queryStringParameters.a) + parseFloat(event.queryStringParameters.b)
   }
-
 
   const response = {
     statusCode: 200,
